@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit DOM Element</title>
+</head>
+<body style="background-color: rgb(66, 54, 54); color:aliceblue">
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(languageName) {
+        const li = document.createElement('li')
+        li.innerText = `${languageName}`
+        document.querySelector('.language').appendChild(li)
+    }
+    addLanguage('Python')
+    addLanguage('NextJS')
+
+    // optimise approach (recommended)
+
+    function addOptimizeLanguage(langName){
+        const li = document.createElement('li')
+        li.appendChild(document.createTextNode(langName))
+        document.querySelector('.language').appendChild(li)
+    }
+    addOptimizeLanguage('Ruby')
+    addOptimizeLanguage('Go Lang')
+
+    // edit element
+    function updateLanguage(editLang){
+        const lang = document.querySelector("li:nth-child(3)")
+        //lang.innerHTML = editLang
+        const newLi = document.createElement('li')
+        newLi.textContent = `${editLang}`
+        lang.replaceWith(newLi)
+    }
+    updateLanguage('C++')
+
+    // edit part two (outerhtml)
+    const secondLang = document.querySelector('li:first-child')
+    secondLang.outerHTML = '<li>VueJs</li>'
+
+    // remove 
+    function removeLanguge(){
+        const removeElement = document.querySelector('li:last-child')
+        removeElement.remove()
+    }
+    removeLanguge()
+
+</script>
+</html>
